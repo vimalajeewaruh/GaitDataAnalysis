@@ -36,6 +36,7 @@ In the following, a brief introduction, for each code, is provided to explain it
 4. **Test_Significance_test.m:** Utilizes Wilcoxon rank sum tests to determine whether differences between non-fallers and fallers (gait and self-similarity) are statistically significant. 
 
 5. **Test_Perfromance_Additional.m:** Implements classifiers to test discriminatory performance of the  gait features as well as self-similar features derived from the standard and new method. The classifiers include *Logistic regression, K-Nearest Neighbors, Support Vector Machine, Random Forest, Naive Bayes, and Ensemble models. The main steps are as follows:
+6. 
       i. Use the forward feature selection method to select the gait feature set that contributes to the higher classification performance.\
       ii. Perform classification with the selected gait features.\
       iii. As a basis for classification, feature matrices are constructed using selected gait features and all possible combinations of self-similar features. The combination of self-similar features that results in the best classification performance is used as the basis for the classification. This is performed with the self-similar features computed using the standard and new methods. 
