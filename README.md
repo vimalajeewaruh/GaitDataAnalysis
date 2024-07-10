@@ -41,5 +41,5 @@ In the following, a brief introduction, for each code, is provided to explain it
       ii. Perform classification with the selected gait features.\
       iii. As a basis for classification, feature matrices are constructed using selected gait features and all possible combinations of self-similar features. The combination of self-similar features that results in the best classification performance is used as the basis for the classification. This is performed with the self-similar features computed using the standard and new methods. 
  
-
+6. **Test_NN.m:** 
 
