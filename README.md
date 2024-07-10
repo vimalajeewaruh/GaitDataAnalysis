@@ -10,25 +10,35 @@ You can find the dataset available at https://zenodo.org/records/8003441; the da
 The repository includes Matlab files that are used to implement
   1. The new self-similarity measure,
   2. Simulation to assess performance of the new method,
-  3. classifiers to assess discriminatory performance of the self-similar features computed using the new method. 
+  3. Gait data analysis involves implementing classifiers to assess discriminatory performance of the self-similar features computed using the new method. 
 
-The **MatlabFunctions** folder contains a set of functions used in the Matlab files. To run these codes, follow the instructions provided.
+The **MatlabFunctions** folder contains a set of functions used in the Matlab files. In addition, the **wavelab 850** package available at https://github.com/gregfreeman/wavelab850 is required to run these codes.  
 
-1. **Test_DataProcessing:** Reads data from the data repository and separates cases and controls based on the falls and non-falls information provided in the GSTRIDE_database.csv. This code produces **Subject.mat** file containing cases and control IDs and **Gait_Ca.csv** and **Gait_Co.csv** containing LA and AV signals selected from the **Test_recording_raw** folder available in the data repository.
+In the following, a brief introduction, for each code, is provided to explain its functionality.
 
-2. **Test_Gait_Features:** Reads 26 features from the **GSTRIDE_database** ("StrideTime AVG", "StrideTime STD", "Load Avg", "Load STD", "FootFlat AVG","FootFlat STD", "Push AVG", "Push STD","Swing AVG", "Swing STD", "Toe-Off Angle AVG","Toe-Off Angle STD", "Heal Strike AVG", "Heal Strike STD", "Cadence AVG", "Cadence STD","Step Speed AVG",  "Step Speed STD", "Stride Length AVG", "Stride Length STD") and they quantify the average and standard deviation of thirteen gait features. This code computes their coefficient of variation and they are used as gait features in this project. 
+### 1. Implementation of the new method
 
+1. **MomentMatchHurst_new.m:** Implements the proposed Hurst exponent estimation method and is Available in the *MatlabFunctions* folder.
+2. **waveletspectra_new.m:** Computes the Hurst exponent using the standard wavelet spectra-based method.
 
-1.  The study utilized VGRF data files, which were extracted from the Physionet repository. The **CaseFeatures** and **ControlFeatures** folders contain multiscale and time-domain features that were generated using the VGRF data.
+### 2.Simulation study
+2. **New_H_vs_Starndard_H.m:** compares the Hurst exponent estimation performance between the standard and new method. This code mainly utilizes two functions *waveletspectra_new.m* and *MomentMatchHurst_new.m* available in **MatlabFunctions*. While the *waveletspectra_new.m* involves the Hurst exponent estimation using the standard wavelet spectra-based method, the *MomentMatchHurst_new.m* function computes the Hurst exponent using the proposed method in this project.
+   
+3. **Test_NewMethod_WaveFilters.m:** Compares the Hurst exponent estimation performance of the new and standard methods for different $H$ values with different wavelet filters and location measures.
 
-   **Multi-scale features**\
-      i. Level-wise cross-correlation \
-      ii. Wavelet entropy\
-      iii. Spectral slope 
-    
-   **Time-domain features** \
-      i. Stance time and Swing Time\
-      ii. Maximum force reaction at toe off
+### 3. Gait data analysis
+1. **Test_DataProcessing.m:** Reads data from the data repository and separates cases and controls based on the falls and non-falls information provided in the GSTRIDE_database.csv. This code produces **Subject.mat** file containing cases and control IDs and **Gait_Ca.csv** and **Gait_Co.csv** containing LA and AV signals selected from the **Test_recording_raw** folder available in the data repository.
 
-2.  Run **Demo** files to test the classification performance of multiscale features and their integration with three time-domain features in diagnosing Parkinson's disease
+2. **Test_Gait_Features.m:** Reads 26 features from the **GSTRIDE_database** (*StrideTime AVG, StrideTime STD, Load Avg, Load STD, FootFlat AVG, FootFlat STD, Push AVG, Push STD, Swing AVG, Swing STD, Toe-Off Angle AVG, Toe-Off Angle STD, Heal Strike AVG, Heal Strike STD, Cadence AVG, Cadence STD, Step Speed AVG, Step Speed STD, Stride Length AVG, Stride Length STD*). The *AVG* and *STD* stand for average and standard deviation, respectively. This code computes their coefficient of variation and they are used as gait features in this project.
+
+3. **Test_Slope_Features.m:** Computes the self-similar features of LA and AV signals using functions *waveletspectra_new.m* and *MomentMatchHurst_new.m*.
+   
+4. **Test_Significance_test.m:** Utilizes Wilcoxon rank sum tests to determine whether differences between non-fallers and fallers (gait and self-similarity) are statistically significant. 
+
+5. **Test_Perfromance_Additional.m:** Implements classifiers to test discriminatory performance of the  gait features as well as self-similar features derived from the standard and new method. The classifiers include *Logistic regression, K-Nearest Neighbors, Support Vector Machine, Random Forest, Naive Bayes, and Ensemble models. The main steps are as follows:
+      i. Use the forward feature selection method to select the gait feature set that contributes to the higher classification performance.\
+      ii. Perform classification with the selected gait features.\
+      iii. As a basis for classification, feature matrices are constructed using selected gait features and all possible combinations of self-similar features. The combination of self-similar features that results in the best classification performance is used as the basis for the classification. This is performed with the self-similar features computed using the standard and new methods. 
+ 
+
 
