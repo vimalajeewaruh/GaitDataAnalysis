@@ -4,7 +4,7 @@ Steps for using the codes
 This project proposes a new measure for characterizing self-similarity in high-frequency signals. The introduced method is applied in the context of an important gait data study. The steps below explain how to implement the measure and perform gait data analysis.
 
 ### Dataset
-You can find the dataset available at https://zenodo.org/records/8003441; the dataset consists of linear acceleration (LA) and angular velocity (AV) measured across X, Y, and Z directions. These measurements were observed from 163 elderly participants, composed of 45 men and 118 women. Also, the demographic data file consists of several gait features. This project uses the raw LA and AV measurements to assess self-similarity and thirteen gait features.     
+The dataset is available at https://zenodo.org/records/8003441; the dataset consists of linear acceleration (LA) and angular velocity (AV) measured across X, Y, and Z directions. These measurements were observed from 163 elderly participants, composed of 45 men and 118 women. Also, the demographic data file, *GSTRIDE_database.csv* consists of several gait features. This project uses the raw LA and AV measurements to assess self-similarity and thirteen gait features.     
 
 ### Matlab Codes 
 The repository includes Matlab files that are used to implement
@@ -41,5 +41,4 @@ In the following, a brief introduction, for each code, is provided to explain it
       ii. Perform classification with the selected gait features.\
       iii. As a basis for classification, feature matrices are constructed using selected gait features and all possible combinations of self-similar features. The combination of self-similar features that results in the best classification performance is used as the basis for the classification. This is performed with the self-similar features computed using the standard and new methods. 
  
-6. **Test_NN.m:** 
-
+6. **Test_NN.m:** This is an ensemble model-2 (EM-2) combining predictions from LR, KNN, SVM, NB, RF, and decision trees. In terms of feature selection, this model differs from the classifiers implemented in step 5. To perform this classification, this model uses all gait and self-similar features.
