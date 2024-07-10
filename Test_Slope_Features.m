@@ -1,5 +1,4 @@
 close all; clear all; clc
-%addpath('/Users/hvimalajeewa2/Documents/Tamu_Documents/TAMU/DemosNew/')
 addpath('./MatlabFunctions/')
 
 %% INITIALIZING PARAMETERS 
@@ -30,12 +29,13 @@ family = 'Symmlet'; filt = MakeONFilter(family,8);
 k11 = 8; k12 = 12; %  scales use to estimate H of LA signals
 k21 = 8; k22 = 12; %  scales use to estimate H of AV signals
 
+% The second range of levels shows the second slope. 
 % k21 = 2; k22 = 6;
 % k11 = 2; k12 = 6;
 
 %%  ############################  Estimate H usign the standard wavelet spectra method for cases ##############################
 % load raw LA and AV signals from people at risk of falls
-dirName = sprintf('/Users/hvimalajeewa2/Documents/UNL_Documents/Projects/Gait_Data/Matlab/Case_csv/');             %# folder path
+dirName = sprintf('./Case_csv/');             %# folder path
 
 files = dir( fullfile(dirName,'*.csv') );   %# list all *.xyz files
 files = {files.name}';                      %'# file names
@@ -53,8 +53,7 @@ for i = 1: nfi
     data_csv = table2array(data); 
     
     J = floor(log2(size(data_csv,1)));  
-
-
+    
     for j = 1: size(data_csv,2)
         data = data_csv(:,j);
         
@@ -82,7 +81,7 @@ saveas(h,'./Figures/Test_Standard_Case.png')
 
 %% Estimate H usign the standard wavelet spectra method for controls
 % load raw LA and AV signals from people at risk of falls
-dirName = sprintf('/Users/hvimalajeewa2/Documents/UNL_Documents/Projects/Gait_Data/Matlab/Control_csv/');             %# folder path
+dirName = sprintf('./Control_csv/');             %# folder path
 
 files = dir( fullfile(dirName,'*.csv') );   %# list all *.xyz files
 files = {files.name}';                      %'# file names
@@ -129,10 +128,10 @@ end
 saveas(h,'./Figures/Test_Standard_Control.png')
 
 
-%% %%%%%%%%%%%%%%%%%%%%%%% New Husts expoent measure %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% %%%%%%%%%%%%%%%%%%%%%%% New Hust exponent measure %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% load raw LA and AV signals from people not at risk of falls
-dirName = sprintf('/Users/hvimalajeewa2/Documents/UNL_Documents/Projects/Gait_Data/Matlab/Control_csv/');             %# folder path
+dirName = sprintf('./Control_csv/');             %# folder path
 
 files = dir( fullfile(dirName,'*.csv') );   %# list all *.xyz files
 files = {files.name}';                      %'# file names
@@ -183,7 +182,7 @@ end
 
 %% load raw LA and AV signals from people at risk of falls
 
-dirName = sprintf('/Users/hvimalajeewa2/Documents/UNL_Documents/Projects/Gait_Data/Matlab/Case_csv/');             %# folder path
+dirName = sprintf('./Case_csv/');             %# folder path
 
 files = dir( fullfile(dirName,'*.csv') );   %# list all *.xyz files
 files = {files.name}';                      %'# file names
@@ -276,9 +275,9 @@ xlabel('Sensor (LA - Linear Acceleration, AV - Angular Velocity)'); ylabel('Hurs
 ylim([-0.50 1.50]);
 grid on 
 
-%saveas(h,'./Figures/Test_Standard_vs_New_H_2_6.png')
+%saveas(h,'./Figures/Test_Standard_vs_New_H_2_6.png') % plot for energies within scales 2 and 6
 
-%saveas(h,'./Figures/Test_Standard_vs_New_H_8_12.png')
+%saveas(h,'./Figures/Test_Standard_vs_New_H_8_12.png') % plot for energies within scales 8 and 12
 
 %% Test the differnece between H of LA and AV from cases and controls is significant 
 
@@ -347,40 +346,3 @@ GaitFeaturesMatrix.Y_Co = Y_Co;
 GaitFeaturesMatrix.Y_Ca = Y_Ca;
 
 %save('GaitFeaturesMatrix.mat')
-
-
-%%
-
-%%
-% figure(1)
-% for sensor = 1:6
-%     subplot(2,3,sensor)
-%     ax = gca;
-%     x1 = Slope_Control(:,sensor); x2 = Slope_Case(:,sensor);x3 = Slope_Control_new(:,sensor); x4 = Slope_Case_new(:,sensor);
-%     X = [x1; x2;x3;x4];
-%     grp = [ones(size(x1)); 2.*ones(size(x2)) ; 3.*ones(size(x3)); ; 4.*ones(size(x4))];
-%     boxplot(ax, X, grp)
-%     title("sensor " + num2str(sensor));
-% 
-%     ylim([-.50 1.25]);
-%     ax.XTick = [1, 2]; 
-% ax.XTickLabel = string(ax.XTick);
-% grid on
-% end
-% 
-% figure(2)
-% for sensor = 1:6
-%     subplot(2,3,sensor)
-%     ax = gca;
-%     x1 = Slope_Control_new(:,sensor); x2 = Slope_Case_new(:,sensor);
-%     X = [x1; x2];
-%     grp = [ones(size(x1)); 2.*ones(size(x2))];
-%     boxplot(ax, X, grp)
-%     title("sensor " + num2str(sensor));
-% 
-%     ylim([-.50 1.25]);
-%     ax.XTick = [1, 2]; 
-% ax.XTickLabel = string(ax.XTick);
-% grid on
-% end
-
