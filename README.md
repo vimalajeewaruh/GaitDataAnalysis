@@ -1,5 +1,3 @@
-Steps for using the codes 
-
 # New Dimensions in Gait Dynamics Through an Advanced Self-similar Measure
 This project proposes a new measure for characterizing self-similarity in high-frequency signals. The introduced method is applied in the context of an important gait data study. The steps below explain how to implement the measure and perform gait data analysis.
 
