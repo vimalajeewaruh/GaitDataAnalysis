@@ -1,11 +1,8 @@
 close all; clear all; clc
-addpath('/Users/hvimalajeewa2/Documents/Tamu_Documents/TAMU/DemosNew/')
-%addpath('/Users/dixon/Documents/TAMU/Sample Data/White blood Cancer data/MatlabFunctions/')
-%addpath('/Users/hvimalajeewa2/Documents/UNL_Documents/Projects/Gait_Data/GSTRIDE_database/Test_recordings_raw/')
 
 %%  ############################ Data Label Files ##############################
-
-dirName = sprintf('/Users/hvimalajeewa2/Documents/UNL_Documents/Projects/Gait_Data/GSTRIDE_database/');             %# folder path
+% Download GSTRIDE data from https://zenodo.org/records/8003441 and set the path  GSTRIDE_database
+dirName = sprintf('./Gait_Data/GSTRIDE_database/');             %# folder path
 files = dir( fullfile(dirName,'*.csv') );
 
 fname = fullfile(dirName,files.name);     %# full path to file
@@ -15,8 +12,8 @@ data_device = table2array(data_registry(:,6));
 data_environment = table2array(data_registry(:,11));
 
 %% ##############################  Raw Data Files ####################
-
-dirName = sprintf('/Users/hvimalajeewa2/Documents/UNL_Documents/Projects/Gait_Data/GSTRIDE_database/Test_recordings_raw/');             %# folder path
+% Set path for Test_recodings_raw folder downloaded from GSTRIDE data available at https://zenodo.org/records/8003441
+dirName = sprintf('./Gait_Data/GSTRIDE_database/Test_recordings_raw/');             %# folder path
 files = dir( fullfile(dirName,'*.txt') );   %# list all *.xyz files
 files = {files.name}';                      %'# file names
 nfi = numel(files);
@@ -80,7 +77,7 @@ Subject.Case_ID_new = Case_ID_new;
 save( 'Subject.mat' )
 %% Clibrated descriptors
 
-dirName = sprintf('/Users/hvimalajeewa2/Documents/UNL_Documents/Projects/Gait_Data/GSTRIDE_database/');             %# folder path
+dirName = sprintf('./Gait_Data/GSTRIDE_database/');             %# folder path
 files = dir( fullfile(dirName,'*.csv') );
 
 fname = fullfile(dirName,files.name);     %# full path to file
