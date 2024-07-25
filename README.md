@@ -4,7 +4,7 @@ This project proposes a new measure for characterizing self-similarity in high-f
 ### Dataset
 The dataset is available at https://zenodo.org/records/8003441; the dataset consists of linear acceleration (LA) and angular velocity (AV) measured across X, Y, and Z directions. These measurements were observed from 163 elderly participants, composed of 45 men and 118 women. Also, the demographic data file, *GSTRIDE_database.csv* consists of several gait features. This project uses the raw LA and AV measurements to assess self-similarity and thirteen gait features.     
 
-### Matlab Codes 
+### Matlab Codes
 The repository includes Matlab files that are used to implement
   1. The new self-similarity measure,
   2. Simulation to assess performance of the new method,
@@ -20,7 +20,7 @@ In the following, a brief introduction, for each code, is provided to explain it
 2. **waveletspectra_new.m:** Computes the Hurst exponent using the standard wavelet spectra-based method.
 
 ### 2.Simulation study
-2. **New_H_vs_Starndard_H.m:** compares the Hurst exponent estimation performance between the standard and new method. This code mainly utilizes two functions *waveletspectra_new.m* and *MomentMatchHurst_new.m* available in **MatlabFunctions*. While the *waveletspectra_new.m* involves the Hurst exponent estimation using the standard wavelet spectra-based method, the *MomentMatchHurst_new.m* function computes the Hurst exponent using the proposed method in this project.
+2. **New_H_vs_Starndard_H.m:** compares the Hurst exponent estimation performance between the standard and new method. This code mainly utilizes two functions *waveletspectra_new.m* and *MomentMatchHurst_new.m* available in **MatlabFunctions*. While the *waveletspectra_new.m* involves the Hurst exponent estimation using the standard wavelet spectra-based method, the *MomentMatchHurst_new.m* function computes the Hurst exponent using the proposed method in this project. 
    
 3. **Test_NewMethod_WaveFilters.m:** Compares the Hurst exponent estimation performance of the new and standard methods for different $H$ values with different wavelet filters and location measures.
 
@@ -37,6 +37,6 @@ In the following, a brief introduction, for each code, is provided to explain it
    
       i. Use the forward feature selection method to select the gait feature set that contributes to the higher classification performance.\
       ii. Perform classification with the selected gait features.\
-      iii. As a basis for classification, feature matrices are constructed using selected gait features and all possible combinations of self-similar features. The combination of self-similar features that results in the best classification performance is used as the basis for the classification. This is performed with the self-similar features computed using the standard and new methods. 
+      iii. Feature matrices are constructed using the selected gait features and all possible combinations of self-similar features. The combination of self-similar features that results in the best classification performance is used as the basis for the classification. This is performed with the self-similar features computed using the standard and new methods. 
  
 6. **Test_NN.m:** This is an ensemble model-2 (EM-2) combining predictions from LR, KNN, SVM, NB, RF, and decision trees. In terms of feature selection, this model differs from the classifiers implemented in step 5. To perform this classification, this model uses all gait and self-similar features.
